@@ -1,1 +1,1 @@
-typeorm-model-generator -h localhost -d dbname -u user -x pass -e postgres -o ./src/entities
+typeorm-model-generator -h localhost -d dbname -u user -x pass -e postgres -o ./src

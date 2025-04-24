@@ -1,0 +1,40 @@
+1단계: NestJS 프로젝트 생성
+npm install -g @nestjs/cli
+nest new nest-crud-app
+cd nest-crud-app
+
+
+2단계: TypeORM 및 PostgreSQL 설정
+npm install @nestjs/typeorm typeorm pg
+
+app.module.ts 파일을 열고 TypeORM을 설정합니다.
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+@Module({
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres', // 본인의 DB 사용자명으로 변경
+      password: 'password', // 본인의 DB 비밀번호로 변경
+      database: 'nest_crud', // 본인의 DB 이름으로 변경
+      autoLoadEntities: true,
+      synchronize: true, // 개발 환경에서만 사용
+    }),
+  ],
+})
+export class AppModule {}
+
+3. 나만의 nestjs 리소스 생성
+nest g module t-test1
+nest g service t-test1
+nest g controller t-test1
+
+
+
+4. type_model_generator 를 이용해서 db 에 있는 테이블들 코드로 가져오기
+type_model_generator.txt
+
+
