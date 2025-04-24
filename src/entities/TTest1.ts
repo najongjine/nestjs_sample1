@@ -6,9 +6,14 @@ export class TTest1 {
   @PrimaryGeneratedColumn({ type: "integer", name: "id" })
   id: number;
 
-  @Column("character varying", { name: "name", nullable: true, length: 100 })
+  @Column("character varying", {
+    name: "name",
+    nullable: true,
+    length: 100,
+    default: () => "''",
+  })
   name: string | null;
 
-  @Column("text", { name: "description", nullable: true })
+  @Column("text", { name: "description", nullable: true, default: () => "''" })
   description: string | null;
 }

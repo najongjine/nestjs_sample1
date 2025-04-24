@@ -1,0 +1,17 @@
+예시 1: id가 int 자동 증가
+
+CREATE TABLE t_user (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+예시 2: id가 bigint 자동 증가
+
+CREATE TABLE t_user (
+    id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

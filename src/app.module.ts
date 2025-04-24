@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TTest1Module } from './t-test1/t-test1.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { TTest1Module } from './t-test1/t-test1.module';
       synchronize: false, // 개발 환경에서만 사용
     }),
     TTest1Module,
+    AuthModule,
+    UserModule,
   ],
 })
 export class AppModule {}
