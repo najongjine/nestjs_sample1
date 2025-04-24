@@ -11,13 +11,13 @@ export class TTest1Service {
     private readonly tTest1Repository: Repository<TTest1>,
   ) {}
 
-  create(data: Partial<TTest1>): Promise<TTest1> {
-    const entity = this.tTest1Repository.create(data);
+  async create(data: Partial<TTest1>): Promise<TTest1> {
+    const entity = await this.tTest1Repository.create(data);
     return this.tTest1Repository.save(entity);
   }
 
-  findAll(): Promise<TTest1[]> {
-    return this.tTest1Repository.find();
+  async findAll(): Promise<TTest1[]> {
+    return await this.tTest1Repository.find();
   }
 
   async findOne(id: number): Promise<TTest1> {

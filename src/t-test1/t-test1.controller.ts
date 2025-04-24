@@ -7,13 +7,23 @@ export class TTest1Controller {
   constructor(private readonly tTest1Service: TTest1Service) {}
 
   @Post()
-  create(@Body() data: Partial<TTest1>) {
-    return this.tTest1Service.create(data);
+  async create(@Body() data: Partial<TTest1>) {
+    try {
+        let createdData=  await this.tTest1Service.create(data);   
+        return {success:true, data:createdData, msg:""};
+    } catch (error) {
+        return {success:false, data:null, msg:error?.message};
+    }
   }
 
   @Get()
-  findAll() {
-    return this.tTest1Service.findAll();
+  async findAll() {
+    try {
+        let data= await this.tTest1Service.findAll();    
+        return {success:true, data:data, msg:""};
+    } catch (error) {
+        return {success:false, data:null, msg:error?.message};
+    }
   }
 
   @Get(':id')
@@ -38,7 +48,12 @@ export class TTest1Controller {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.tTest1Service.remove(id);
+  async remove(@Param('id') id: number) {
+    try {
+        await this.tTest1Service.remove(id);    
+        return {success:true, data:null, msg:""};
+    } catch (error) {
+        return {success:false, data:null, msg:error?.message};
+    }
   }
 }
