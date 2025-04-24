@@ -1,0 +1,3 @@
+nest g module t-test1
+nest g service t-test1
+nest g controller t-test1

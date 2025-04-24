@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
+import { TTest1Module } from './t-test1/t-test1.module';
 
 @Module({
   imports: [
@@ -11,10 +11,11 @@ import { UsersModule } from './users/users.module';
       username: 'postgres', // 본인의 DB 사용자명으로 변경
       password: 'aaaa', // 본인의 DB 비밀번호로 변경
       database: 'test1', // 본인의 DB 이름으로 변경
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      //entities: [__dirname + '/entities/*{.ts,.js}'],
+      autoLoadEntities: true,
       synchronize: false, // 개발 환경에서만 사용
     }),
-    UsersModule,
+    TTest1Module,
   ],
 })
 export class AppModule {}
