@@ -8,14 +8,13 @@ import {
   UseFilters,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from './strategies/local-auth.guard';
 import { LoggedInGuard } from './auth.guard'; // 내가 만든 커스텀 가드
 import { Response } from 'express';
-import { BadRequestExceptionFilter } from './strategies/customBadRequestException';
 
 @Controller('auth')
-@UseFilters(BadRequestExceptionFilter)
 export class AuthController {
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
     try {
@@ -29,7 +28,7 @@ export class AuthController {
     }
   }
 
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(LocalAuthGuard)
   @Get('wronglogin')
   async wronglogin(@Request() req) {
     try {
