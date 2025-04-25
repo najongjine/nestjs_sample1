@@ -12,7 +12,7 @@ async function bootstrap() {
   /** 내가만든 커스텀 Filter 전역 적용하기 END */
 
   app.enableCors({
-    origin: 'http://localhost:3000', // React 앱의 주소
+    //origin: 'http://localhost:3000', // React 앱의 주소
     credentials: true,
   });
 
@@ -24,9 +24,9 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: {
         maxAge: 60 * 60 * 1000, // 1시간
-        httpOnly: true,
-        secure: false, // 개발 환경에서는 false
-        sameSite: 'lax',
+        //httpOnly: true,
+        //secure: false, // 개발 환경에서는 false
+        //sameSite: 'lax',
       },
     }),
   );
