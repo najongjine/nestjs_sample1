@@ -1,9 +1,19 @@
-import { Controller, Get, Post, Request, UseGuards, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
+  Res,
+  UseFilters,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggedInGuard } from './auth.guard'; // 내가 만든 커스텀 가드
 import { Response } from 'express';
+import { BadRequestExceptionFilter } from './strategies/customBadRequestException';
 
 @Controller('auth')
+@UseFilters(BadRequestExceptionFilter)
 export class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
