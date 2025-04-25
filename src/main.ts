@@ -2,9 +2,14 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
+import { BadRequestExceptionFilter } from './auth/strategies/customBadRequestException';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  /** 내가만든 커스텀 BadRequestExceptionFilter 전역 적용하기  */
+  app.useGlobalFilters(new BadRequestExceptionFilter());
+  /** 내가만든 커스텀 BadRequestExceptionFilter 전역 적용하기 END */
 
   // app.enableCors({
   //   origin: 'http://localhost:3001', // React 앱의 주소

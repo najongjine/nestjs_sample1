@@ -8,12 +8,29 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
   async login(@Request() req) {
-    return { message: 'Login successful', user: req?.user };
+    try {
+      return { success: true, user: req?.user, message: 'Login successful' };
+    } catch (error) {
+      return {
+        success: true,
+        user: null,
+        message: `!!!(auth.controller login) ${error?.message ?? ''}`,
+      };
+    }
   }
+
   @UseGuards(AuthGuard('local'))
-  @Get('getlogin')
-  async getlogin(@Request() req) {
-    return { message: 'Login successful', user: req?.user };
+  @Get('wronglogin')
+  async wronglogin(@Request() req) {
+    try {
+      return { success: true, user: req?.user, message: 'Login successful' };
+    } catch (error) {
+      return {
+        success: true,
+        user: null,
+        message: `!!!(auth.controller login) ${error?.message ?? ''}`,
+      };
+    }
   }
 
   @Post('logout')
