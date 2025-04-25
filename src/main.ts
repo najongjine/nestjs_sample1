@@ -2,21 +2,19 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
-import { BadRequestExceptionFilter } from './auth/strategies/customBadRequestException';
 import { UnauthorizedExceptionFilter } from './auth/strategies/customUnauthorizedException';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   /** 내가만든 커스텀 Filter 전역 적용하기  */
-  app.useGlobalFilters(new BadRequestExceptionFilter());
   app.useGlobalFilters(new UnauthorizedExceptionFilter());
   /** 내가만든 커스텀 Filter 전역 적용하기 END */
 
-  // app.enableCors({
-  //   origin: 'http://localhost:3001', // React 앱의 주소
-  //   credentials: true,
-  // });
+  app.enableCors({
+    origin: 'http://localhost:3000', // React 앱의 주소
+    credentials: true,
+  });
 
   /** 로그인. passport */
   app.use(
@@ -26,6 +24,9 @@ async function bootstrap() {
       saveUninitialized: false,
       cookie: {
         maxAge: 60 * 60 * 1000, // 1시간
+        httpOnly: true,
+        secure: false, // 개발 환경에서는 false
+        sameSite: 'lax',
       },
     }),
   );

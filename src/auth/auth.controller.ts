@@ -9,22 +9,26 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { LocalAuthGuard } from './strategies/local-auth.guard';
-import { LoggedInGuard } from './auth.guard'; // 내가 만든 커스텀 가드
+import { LoggedInGuard } from './strategies/auth.guard'; // 내가 만든 커스텀 가드
 import { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Request() req) {
+  async login(@Request() req, @Res() res) {
     try {
-      return { success: true, user: req?.user, message: 'Login successful' };
+      return res.json({
+        success: true,
+        user: req?.user,
+        message: 'Login successful',
+      });
     } catch (error) {
-      return {
+      return res.json({
         success: true,
         user: null,
         message: `!!!(auth.controller login) ${error?.message ?? ''}`,
-      };
+      });
     }
   }
 

@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  ExecutionContext,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
@@ -11,5 +15,12 @@ export class LocalAuthGuard extends AuthGuard('local') {
       );
     }
     return user;
+  }
+  // 클라에서 로그인 요청시
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const result = (await super.canActivate(context)) as boolean;
+    const request = context.switchToHttp().getRequest();
+    await super.logIn(request);
+    return result;
   }
 }
