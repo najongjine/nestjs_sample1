@@ -12,7 +12,7 @@ async function bootstrap() {
   /** 내가만든 커스텀 Filter 전역 적용하기 END */
 
   app.enableCors({
-    //origin: 'http://localhost:3000', // React 앱의 주소
+    origin: 'http://localhost:3100', // React 앱의 주소
     credentials: true,
   });
 
