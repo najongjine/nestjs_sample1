@@ -6,13 +6,16 @@ import {
   Res,
   Next,
   UseGuards,
+  UseFilters,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { LocalAuthGuard } from './strategies/local-auth.guard';
 import { LoggedInGuard } from './strategies/auth.guard'; // 내가 만든 커스텀 가드
 import { Request, Response, NextFunction } from 'express';
+import { HttpExceptionFilter } from './strategies/custHttp-exception.filter';
 
 @Controller('auth')
+@UseFilters(HttpExceptionFilter)
 export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -25,7 +28,7 @@ export class AuthController {
       });
     } catch (error) {
       return res.json({
-        success: true,
+        success: false,
         user: null,
         message: `!!!(auth.controller login) ${error?.message ?? ''}`,
       });
@@ -39,7 +42,7 @@ export class AuthController {
       return { success: true, user: req?.user, message: 'Login successful' };
     } catch (error) {
       return {
-        success: true,
+        success: false,
         user: null,
         message: `!!!(auth.controller login) ${error?.message ?? ''}`,
       };
