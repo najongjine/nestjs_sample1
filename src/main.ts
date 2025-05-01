@@ -9,6 +9,7 @@ import { UnauthorizedExceptionFilter } from './auth/strategies/customUnauthorize
 const server = express();
 
 async function bootstrap() {
+  //const app = await NestFactory.create(AppModule);
   const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
 
   /** 내가만든 커스텀 Filter 전역 적용하기  */
