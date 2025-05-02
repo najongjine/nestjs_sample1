@@ -20,10 +20,7 @@ async function bootstrap() {
     origin: [
       'http://localhost:3100',
       'http://localhost:3000',
-      'https://react-sample1-7oklifwj7-wildojisans-projects.vercel.app',
-      'https://react-sample1-gamma.vercel.app/',
-      'https://react-sample1-qhyrhm2gr-wildojisans-projects.vercel.app',
-      'react-sample1-wildojisans-projects.vercel.app',
+      'https://react-sample1-gamma.vercel.app',
     ],
     credentials: true,
   });
