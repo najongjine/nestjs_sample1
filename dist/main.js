@@ -12,7 +12,11 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, new platform_express_1.ExpressAdapter(server));
     app.useGlobalFilters(new customUnauthorizedException_1.UnauthorizedExceptionFilter());
     app.enableCors({
-        origin: 'http://localhost:3100',
+        origin: [
+            'http://localhost:3100',
+            'http://localhost:3000',
+            'https://react-sample1-7oklifwj7-wildojisans-projects.vercel.app',
+        ],
         credentials: true,
     });
     app.use(session({
