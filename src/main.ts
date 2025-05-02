@@ -21,6 +21,7 @@ async function bootstrap() {
       'http://localhost:3100',
       'http://localhost:3000',
       'https://react-sample1-7oklifwj7-wildojisans-projects.vercel.app',
+      'https://react-sample1-gamma.vercel.app/',
     ],
     credentials: true,
   });
